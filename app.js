@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const ytdl = require('youtubedl-core');
-const PORT = 4000;
+const PORT = process.env.PORT || 4000; // Menggunakan port yang diberikan oleh environment atau default ke 4000
 
 app.use(express.static('public'));
 
@@ -41,6 +41,6 @@ app.get('/download', async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`Server berjalan di http://localhost:${PORT}`);
-});
+// Jangan panggil app.listen di sini, biarkan Vercel yang menangani proses listening
+
+module.exports = app; // Untuk dapat digunakan oleh Vercel
